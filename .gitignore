@@ -4,4 +4,4 @@
 
 **/*.zip
 
-./public_html/conf.php
+/public_html/conf.php
