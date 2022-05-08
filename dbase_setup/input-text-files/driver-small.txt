@@ -1,0 +1,10 @@
+14,white,female
+89,white,male
+239,hispanic,male
+4311098,hispanic,male
+4311122,white,female
+17647322,black,male
+17647561,white,male
+21126850,hispanic,male
+21126932,white,male
+24729112,black,male

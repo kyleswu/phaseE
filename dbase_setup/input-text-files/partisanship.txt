@@ -1,0 +1,400 @@
+Alabama,2018,republican
+Alaska,2018,republican
+Arizona,2018,democratic
+Arkansas,2018,republican
+California,2018,democratic
+Colorado,2018,democratic
+Connecticut,2018,democratic
+Delaware,2018,democratic
+Florida,2018,republican
+Georgia,2018,republican
+Hawaii,2018,democratic
+Idaho,2018,republican
+Illinois,2018,democratic
+Indiana,2018,republican
+Iowa,2018,democratic
+Kansas,2018,republican
+Kentucky,2018,republican
+Louisiana,2018,republican
+Maine,2018,republican
+Maryland,2018,democratic
+Massachusetts,2018,democratic
+Michigan,2018,democratic
+Minnesota,2018,democratic
+Mississippi,2018,republican
+Missouri,2018,republican
+Montana,2018,republican
+Nebraska,2018,republican
+Nevada,2018,democratic
+New Hampshire,2018,democratic
+New Jersey,2018,democratic
+New Mexico,2018,democratic
+New York,2018,democratic
+North Carolina,2018,republican
+North Dakota,2018,republican
+Ohio,2018,democratic
+Oklahoma,2018,republican
+Oregon,2018,democratic
+Pennsylvania,2018,democratic
+Rhode Island,2018,democratic
+South Carolina,2018,republican
+South Dakota,2018,republican
+Tennessee,2018,republican
+Texas,2018,republican
+Utah,2018,republican
+Vermont,2018,democratic
+Virginia,2018,democratic
+Washington,2018,democratic
+West Virginia,2018,republican
+Wisconsin,2018,democratic
+Wyoming,2018,republican
+Alabama,2016,republican
+Alaska,2016,republican
+Arizona,2016,republican
+Arkansas,2016,republican
+California,2016,democratic
+Colorado,2016,democratic
+Connecticut,2016,democratic
+Delaware,2016,democratic
+Florida,2016,republican
+Georgia,2016,republican
+Hawaii,2016,democratic
+Idaho,2016,republican
+Illinois,2016,democratic
+Indiana,2016,republican
+Iowa,2016,republican
+Kansas,2016,republican
+Kentucky,2016,republican
+Louisiana,2016,republican
+Maine,2016,democratic
+Maryland,2016,democratic
+Massachusetts,2016,democratic
+Michigan,2016,republican
+Minnesota,2016,democratic
+Mississippi,2016,republican
+Missouri,2016,republican
+Montana,2016,republican
+Nebraska,2016,republican
+Nevada,2016,democratic
+New Hampshire,2016,democratic
+New Jersey,2016,democratic
+New Mexico,2016,democratic
+New York,2016,democratic
+North Carolina,2016,republican
+North Dakota,2016,republican
+Ohio,2016,republican
+Oklahoma,2016,republican
+Oregon,2016,democratic
+Pennsylvania,2016,republican
+Rhode Island,2016,democratic
+South Carolina,2016,republican
+South Dakota,2016,republican
+Tennessee,2016,republican
+Texas,2016,republican
+Utah,2016,republican
+Vermont,2016,democratic
+Virginia,2016,democratic
+Washington,2016,democratic
+West Virginia,2016,republican
+Wisconsin,2016,republican
+Wyoming,2016,republican
+Alabama,2014,republican
+Alaska,2014,republican
+Arizona,2014,republican
+Arkansas,2014,republican
+California,2014,democratic
+Colorado,2014,republican
+Connecticut,2014,democratic
+Delaware,2014,democratic
+Florida,2014,republican
+Georgia,2014,republican
+Hawaii,2014,democratic
+Idaho,2014,republican
+Illinois,2014,democratic
+Indiana,2014,republican
+Iowa,2014,republican
+Kansas,2014,republican
+Kentucky,2014,republican
+Louisiana,2014,republican
+Maine,2014,republican
+Maryland,2014,democratic
+Massachusetts,2014,democratic
+Michigan,2014,democratic
+Minnesota,2014,democratic
+Mississippi,2014,republican
+Missouri,2014,republican
+Montana,2014,republican
+Nebraska,2014,republican
+Nevada,2014,democratic
+New Hampshire,2014,democratic
+New Jersey,2014,democratic
+New Mexico,2014,democratic
+New York,2014,democratic
+North Carolina,2014,republican
+North Dakota,2014,republican
+Ohio,2014,republican
+Oklahoma,2014,republican
+Oregon,2014,democratic
+Pennsylvania,2014,republican
+Rhode Island,2014,democratic
+South Carolina,2014,republican
+South Dakota,2014,republican
+Tennessee,2014,republican
+Texas,2014,republican
+Utah,2014,republican
+Vermont,2014,democratic
+Virginia,2014,republican
+Washington,2014,democratic
+West Virginia,2014,republican
+Wisconsin,2014,republican
+Wyoming,2014,republican
+Alabama,2012,republican
+Alaska,2012,republican
+Arizona,2012,republican
+Arkansas,2012,republican
+California,2012,democratic
+Colorado,2012,democratic
+Connecticut,2012,democratic
+Delaware,2012,democratic
+Florida,2012,democratic
+Georgia,2012,republican
+Hawaii,2012,democratic
+Idaho,2012,republican
+Illinois,2012,democratic
+Indiana,2012,republican
+Iowa,2012,democratic
+Kansas,2012,republican
+Kentucky,2012,republican
+Louisiana,2012,republican
+Maine,2012,democratic
+Maryland,2012,democratic
+Massachusetts,2012,democratic
+Michigan,2012,democratic
+Minnesota,2012,democratic
+Mississippi,2012,republican
+Missouri,2012,republican
+Montana,2012,republican
+Nebraska,2012,republican
+Nevada,2012,democratic
+New Hampshire,2012,democratic
+New Jersey,2012,democratic
+New Mexico,2012,democratic
+New York,2012,democratic
+North Carolina,2012,republican
+North Dakota,2012,republican
+Ohio,2012,democratic
+Oklahoma,2012,republican
+Oregon,2012,democratic
+Pennsylvania,2012,democratic
+Rhode Island,2012,democratic
+South Carolina,2012,republican
+South Dakota,2012,republican
+Tennessee,2012,republican
+Texas,2012,republican
+Utah,2012,republican
+Vermont,2012,democratic
+Virginia,2012,democratic
+Washington,2012,democratic
+West Virginia,2012,republican
+Wisconsin,2012,democratic
+Wyoming,2012,republican
+Alabama,2010,republican
+Alaska,2010,republican
+Arizona,2010,republican
+Arkansas,2010,republican
+California,2010,democratic
+Colorado,2010,republican
+Connecticut,2010,democratic
+Delaware,2010,democratic
+Florida,2010,republican
+Georgia,2010,republican
+Hawaii,2010,democratic
+Idaho,2010,republican
+Illinois,2010,democratic
+Indiana,2010,republican
+Iowa,2010,republican
+Kansas,2010,republican
+Kentucky,2010,republican
+Louisiana,2010,republican
+Maine,2010,democratic
+Maryland,2010,democratic
+Massachusetts,2010,democratic
+Michigan,2010,republican
+Minnesota,2010,democratic
+Mississippi,2010,republican
+Missouri,2010,republican
+Montana,2010,republican
+Nebraska,2010,republican
+Nevada,2010,democratic
+New Hampshire,2010,republican
+New Jersey,2010,republican
+New Mexico,2010,democratic
+New York,2010,democratic
+North Carolina,2010,republican
+North Dakota,2010,republican
+Ohio,2010,republican
+Oklahoma,2010,republican
+Oregon,2010,democratic
+Pennsylvania,2010,republican
+Rhode Island,2010,democratic
+South Carolina,2010,republican
+South Dakota,2010,republican
+Tennessee,2010,republican
+Texas,2010,republican
+Utah,2010,republican
+Vermont,2010,democratic
+Virginia,2010,republican
+Washington,2010,democratic
+West Virginia,2010,republican
+Wisconsin,2010,republican
+Wyoming,2010,republican
+Alabama,2008,republican
+Alaska,2008,republican
+Arizona,2008,republican
+Arkansas,2008,democratic
+California,2008,democratic
+Colorado,2008,democratic
+Connecticut,2008,democratic
+Delaware,2008,democratic
+Florida,2008,republican
+Georgia,2008,republican
+Hawaii,2008,democratic
+Idaho,2008,republican
+Illinois,2008,democratic
+Indiana,2008,democratic
+Iowa,2008,democratic
+Kansas,2008,republican
+Kentucky,2008,republican
+Louisiana,2008,republican
+Maine,2008,democratic
+Maryland,2008,democratic
+Massachusetts,2008,democratic
+Michigan,2008,democratic
+Minnesota,2008,democratic
+Mississippi,2008,republican
+Missouri,2008,democratic
+Montana,2008,democratic
+Nebraska,2008,republican
+Nevada,2008,democratic
+New Hampshire,2008,democratic
+New Jersey,2008,democratic
+New Mexico,2008,democratic
+New York,2008,democratic
+North Carolina,2008,democratic
+North Dakota,2008,democratic
+Ohio,2008,democratic
+Oklahoma,2008,republican
+Oregon,2008,democratic
+Pennsylvania,2008,democratic
+Rhode Island,2008,democratic
+South Carolina,2008,republican
+South Dakota,2008,democratic
+Tennessee,2008,republican
+Texas,2008,republican
+Utah,2008,republican
+Vermont,2008,democratic
+Virginia,2008,democratic
+Washington,2008,democratic
+West Virginia,2008,democratic
+Wisconsin,2008,democratic
+Wyoming,2008,republican
+Alabama,2006,republican
+Alaska,2006,republican
+Arizona,2006,republican
+Arkansas,2006,democratic
+California,2006,democratic
+Colorado,2006,democratic
+Connecticut,2006,democratic
+Delaware,2006,democratic
+Florida,2006,democratic
+Georgia,2006,republican
+Hawaii,2006,democratic
+Idaho,2006,republican
+Illinois,2006,democratic
+Indiana,2006,republican
+Iowa,2006,republican
+Kansas,2006,republican
+Kentucky,2006,republican
+Louisiana,2006,republican
+Maine,2006,republican
+Maryland,2006,democratic
+Massachusetts,2006,democratic
+Michigan,2006,democratic
+Minnesota,2006,democratic
+Mississippi,2006,republican
+Missouri,2006,republican
+Montana,2006,republican
+Nebraska,2006,democratic
+Nevada,2006,republican
+New Hampshire,2006,democratic
+New Jersey,2006,democratic
+New Mexico,2006,democratic
+New York,2006,democratic
+North Carolina,2006,democratic
+North Dakota,2006,democratic
+Ohio,2006,democratic
+Oklahoma,2006,republican
+Oregon,2006,democratic
+Pennsylvania,2006,democratic
+Rhode Island,2006,democratic
+South Carolina,2006,republican
+South Dakota,2006,democratic
+Tennessee,2006,democratic
+Texas,2006,republican
+Utah,2006,republican
+Vermont,2006,republican
+Virginia,2006,republican
+Washington,2006,democratic
+West Virginia,2006,democratic
+Wisconsin,2006,democratic
+Wyoming,2006,republican
+Alabama,2004,republican
+Alaska,2004,republican
+Arizona,2004,republican
+Arkansas,2004,democratic
+California,2004,democratic
+Colorado,2004,democratic
+Connecticut,2004,democratic
+Delaware,2004,republican
+Florida,2004,republican
+Georgia,2004,republican
+Hawaii,2004,democratic
+Idaho,2004,republican
+Illinois,2004,democratic
+Indiana,2004,republican
+Iowa,2004,republican
+Kansas,2004,republican
+Kentucky,2004,republican
+Louisiana,2004,republican
+Maine,2004,democratic
+Maryland,2004,democratic
+Massachusetts,2004,democratic
+Michigan,2004,democratic
+Minnesota,2004,democratic
+Mississippi,2004,republican
+Missouri,2004,republican
+Montana,2004,republican
+Nebraska,2004,republican
+Nevada,2004,democratic
+New Hampshire,2004,republican
+New Jersey,2004,democratic
+New Mexico,2004,democratic
+New York,2004,democratic
+North Carolina,2004,republican
+North Dakota,2004,democratic
+Ohio,2004,republican
+Oklahoma,2004,republican
+Oregon,2004,democratic
+Pennsylvania,2004,republican
+Rhode Island,2004,democratic
+South Carolina,2004,republican
+South Dakota,2004,republican
+Tennessee,2004,republican
+Texas,2004,republican
+Utah,2004,republican
+Vermont,2004,democratic
+Virginia,2004,republican
+Washington,2004,democratic
+West Virginia,2004,democratic
+Wisconsin,2004,democratic
+Wyoming,2004,republican

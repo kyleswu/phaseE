@@ -1,0 +1,9 @@
+Arizona,2008,republican
+Arizona,2010,republican
+California,2008,democratic
+Massachusetts,2010,democratic
+Massachusetts,2012,democratic
+Tennessee,2012,republican
+Tennessee,2008,republican
+Illinois,2016,democratic
+Illinois,2018,democratic
