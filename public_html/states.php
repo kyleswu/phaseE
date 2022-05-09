@@ -9,46 +9,106 @@
 
     if (!empty($state)) {
         echo $state;
+        echo "<br>";
 
+        if ($stmt = $conn->prepare("SELECT year, licensedDrivers
+                                    FROM TrafficStatistics
+                                    WHERE state = ?;")) {
+            
+            $licensedDriverData = array();
+
+            $stmt->bind_param("s", $state);
         
+            if ($stmt->execute()) {
+                $result = $stmt->get_result();
 
-        $licensedDriverData = array();
+                if (($result) && ($result->num_rows != 0)) {
+                    foreach($result as $row) {
+                        array_push($licensedDriverData, array( "label"=> $row["year"], "y"=> $row["licensedDrivers"]));
+                    }
+                } else {
+                    echo "<div style='color: red;'>No Licensed Driver Data found for the specified state</div><br>";
+                }
 
-        $sql = "SELECT year, licensedDrivers
-                FROM TrafficStatistics
-                WHERE state = '".$state."';";
-
-        if ($result = mysqli_query($conn, $sql)) {
-            foreach($result as $row) {
-                array_push($licensedDriverData, array( "label"=> $row["year"], "y"=> $row["licensedDrivers"]));
+                $result->free_result();
+            } else {
+                echo "<div style='color: red;'>Execute failed.</div><br>";
             }
+
+            $stmt->close();
+        } else {
+            echo "<div style='color: red;'>Prepare failed.</div><br>";
+            $error = $conn->errno . ' ' . $conn->error;
+            echo $error;
         }
 
-        $highwayFatalitiesData = array();
+        if ($stmt = $conn->prepare("SELECT year, highwayFatalities
+                                    FROM TrafficStatistics
+                                    WHERE state = ?;")) {
+            
+            $highwayFatalitiesData = array();
 
-        $sql = "SELECT year, highwayFatalities
-                FROM TrafficStatistics
-                WHERE state = '".$state."';";
+            $stmt->bind_param("s", $state);
+        
+            if ($stmt->execute()) {
+                $result = $stmt->get_result();
 
-        if ($result = mysqli_query($conn, $sql)) {
-            foreach($result as $row) {
-                array_push($highwayFatalitiesData, array( "label"=> $row["year"], "y"=> $row["highwayFatalities"]));
+                if (($result) && ($result->num_rows != 0)) {
+                    foreach($result as $row) {
+                        array_push($highwayFatalitiesData, array( "label"=> $row["year"], "y"=> $row["highwayFatalities"]));
+                    }
+                } else {
+                    echo "<div style='color: red;'>No Highway Fatalities Data found for the specified state</div><br>";
+                }
+
+                $result->free_result();
+            } else {
+                echo "<div style='color: red;'>Execute failed.</div><br>";
             }
+
+            $stmt->close();
+        } else {
+            echo "<div style='color: red;'>Prepare failed.</div><br>";
+            $error = $conn->errno . ' ' . $conn->error;
+            echo $error;
         }
 
-        $stopsData = array();
 
-        $sql = "SELECT year, count(stopID) AS numStops
-                FROM Stop
-                WHERE state = '".$state."'
-                GROUP BY year;";
+        if ($stmt = $conn->prepare("SELECT year, count(stopID) AS numStops
+                                    FROM Stop
+                                    WHERE state = ?
+                                    GROUP BY year;")) {
 
-        if ($result = mysqli_query($conn, $sql)) {
+            $stopsData = array();
+
+            $stmt->bind_param("s", $state);
+
+            if ($stmt->execute()) {
+            $result = $stmt->get_result();
+
+            if (($result) && ($result->num_rows != 0)) {
             foreach($result as $row) {
                 array_push($stopsData, array( "label"=> $row["year"], "y"=> $row["numStops"]));
             }
-        }                
-    } 
+            } else {
+            echo "<div style='color: red;'>No Stops Data found for the specified state</div><br>";
+            }
+
+            $result->free_result();
+            } else {
+            echo "<div style='color: red;'>Execute failed.</div><br>";
+            }
+
+            $stmt->close();
+            } else {
+            echo "<div style='color: red;'>Prepare failed.</div><br>";
+            $error = $conn->errno . ' ' . $conn->error;
+            echo $error;
+        }  
+
+    } else {
+        echo "<div style='color: red;'>No state was provided.</div><br>";
+    }
 
     $conn->close();
 ?>
