@@ -4,7 +4,7 @@
 
     $state = $_POST['state'];
 
-    echo "<h1>Statistics for States</h1>";
+    echo "<h1>Year to Year Data for States</h1>";
     echo "state: ";
 
     if (!empty($state)) {
