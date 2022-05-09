@@ -3,10 +3,10 @@ DROP PROCEDURE IF EXISTS InsertTuplesDriverStop;
 DELIMITER //
 
 
-CREATE PROCEDURE InsertTuplesDriverStop(IN pass VARCHAR(15), id INT, r VARCHAR(20), s VARCHAR(20))
+CREATE PROCEDURE InsertTuplesDriverStop(IN id INT, r VARCHAR(20), s VARCHAR(20))
 BEGIN
-IF EXISTS(SELECT * FROM Passwords WHERE Passwords.CurPasswords = pass) THEN
-    IF EXISTS (SELECT * FROM Driver WHERE driverID = @driverID) THEN
+-- IF EXISTS(SELECT * FROM Passwords WHERE Passwords.CurPasswords = pass) THEN
+    IF EXISTS (SELECT * FROM Driver WHERE driverID = id) THEN
         UPDATE Driver
         SET race = r, sex = s
         WHERE driverID = id;
@@ -41,9 +41,9 @@ IF EXISTS(SELECT * FROM Passwords WHERE Passwords.CurPasswords = pass) THEN
 -- ELSE
 -- SELECT 'Error: Invalid password' AS pass;
     END IF;
-ELSE
-SELECT 'Error: Invalid password' AS pass;
-END IF;
+-- ELSE
+-- SELECT 'Error: Invalid password' AS pass;
+-- END IF;
 END; //
 
 DELIMITER ;
