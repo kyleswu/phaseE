@@ -77,7 +77,7 @@
 
         if ($stmt = $conn->prepare("SELECT year, count(stopID) AS numStops
                                     FROM Stop
-                                    WHERE state = ?
+                                    WHERE state = ? AND !ISNULL(year)
                                     GROUP BY year;")) {
 
             $stopsData = array();
