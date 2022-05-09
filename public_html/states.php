@@ -4,7 +4,7 @@
 
     $state = $_POST['state'];
 
-    echo "<h1>Statistics for States (CanvasJS)</h1>";
+    echo "<h1>Statistics for States</h1>";
     echo "state: ";
 
     if (!empty($state)) {
@@ -20,6 +20,7 @@
             $stmt->bind_param("s", $state);
         
             if ($stmt->execute()) {
+                
                 $result = $stmt->get_result();
 
                 if (($result) && ($result->num_rows != 0)) {
