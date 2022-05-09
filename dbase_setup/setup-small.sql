@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS Partisanship;
 DROP TABLE IF EXISTS TrafficStatistics;
 DROP TABLE IF EXISTS Driver;
 DROP TABLE IF EXISTS Stop;
+DROP TABLE IF EXISTS Passwords;
 
 -- Describe schema for relation Partisanship
 CREATE TABLE Partisanship (
@@ -77,3 +78,12 @@ LOAD DATA LOCAL INFILE './input-text-files/driver-small.txt'
 INTO TABLE Driver
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n';
+
+-- Table of passwords to access insertion/deletion of tuples
+CREATE TABLE Passwords (
+    CurPasswords  VARCHAR(15)
+);
+
+INSERT INTO Passwords VALUES ('mchakra9');
+INSERT INTO Passwords VALUES ('kwu45');
+INSERT INTO Passwords VALUES ('bestprojectever');
