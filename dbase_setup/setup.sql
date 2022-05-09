@@ -77,3 +77,12 @@ LOAD DATA LOCAL INFILE './input-text-files/driver.csv'
 INTO TABLE Driver
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n';
+
+-- Table of passwords to access insertion/deletion of tuples
+CREATE TABLE Passwords (
+    CurPasswords  VARCHAR(15)
+);
+
+INSERT INTO Passwords VALUES ('mchakra9');
+INSERT INTO Passwords VALUES ('kwu45');
+INSERT INTO Passwords VALUES ('bestprojectever');
