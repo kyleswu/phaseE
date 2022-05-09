@@ -85,23 +85,23 @@
             $stmt->bind_param("s", $state);
 
             if ($stmt->execute()) {
-            $result = $stmt->get_result();
+                $result = $stmt->get_result();
 
-            if (($result) && ($result->num_rows != 0)) {
-            foreach($result as $row) {
-                array_push($stopsData, array( "label"=> $row["year"], "y"=> $row["numStops"]));
-            }
-            } else {
-            echo "<div style='color: red;'>No Stops Data found for the specified state</div><br>";
-            }
+                if (($result) && ($result->num_rows != 0)) {
+                    foreach($result as $row) {
+                        array_push($stopsData, array( "label"=> $row["year"], "y"=> $row["numStops"]));
+                    }
+                } else {
+                    echo "<div style='color: red;'>No Stops Data found for the specified state</div><br>";
+                }
 
-            $result->free_result();
+                $result->free_result();
             } else {
-            echo "<div style='color: red;'>Execute failed.</div><br>";
+                echo "<div style='color: red;'>Execute failed.</div><br>";
             }
 
             $stmt->close();
-            } else {
+        } else {
             echo "<div style='color: red;'>Prepare failed.</div><br>";
             $error = $conn->errno . ' ' . $conn->error;
             echo $error;

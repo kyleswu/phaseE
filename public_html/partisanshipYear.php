@@ -1,3 +1,5 @@
+<head><title>Partisanship Data (Year)</title></head>
+<body>
 <?php
 
     include 'open.php';
@@ -48,12 +50,14 @@
             echo $error; 
         }
 
+        echo "<br><br>";
+
         if ($stmt = $conn->prepare("SELECT party, COUNT(state) AS numStates
                                     FROM Partisanship
                                     WHERE year = ?
                                     GROUP BY party;")) {
 
-            $statePartyCountData = array();
+            $countData = array();
 
             $stmt->bind_param("i", $year);
 
@@ -61,9 +65,9 @@
 
                 $result = $stmt->get_result();
 
-                if (($result) && (result->num_rows != 0)) {
+                if (($result) && ($result->num_rows != 0)) {
                     foreach($result as $row) {
-                        array_push($statePartyCountData, array ( "label"=> $row["party"], "y"=> $row["numStates"]));
+                        array_push($countData, array( "label"=> $row["party"], "y"=> $row["numStates"]));
                     }
                 }
                 
@@ -72,7 +76,7 @@
                 echo "<div style='color: red;'>Execute failed.</div><br>";
             }
 
-            stmt->close();
+            $stmt->close();
 
         } else {
             echo "<div style ='color: red;'>Prepare failed.<br></div><br>";
@@ -86,7 +90,6 @@
 
     $conn->close();
 ?>
-
 <html>
 <head>
 <script>
@@ -101,7 +104,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	data: [{
 		type: "pie",
 		indexLabel: "{label} ({y})",
-		dataPoints: <?php echo json_encode($statePartyCountData, JSON_NUMERIC_CHECK); ?>
+		dataPoints: <?php echo json_encode($countData, JSON_NUMERIC_CHECK); ?>
 	}]
 });
 chart.render();
@@ -113,4 +116,4 @@ chart.render();
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
-</html>    
+</html>   
