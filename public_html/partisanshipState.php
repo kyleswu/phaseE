@@ -33,13 +33,13 @@
                     }
 
                 } else {
-                    echo "<div style='color:red;'>No partisanship data for this state<div><br>";
+                    echo "<div style='color:red;'>No partisanship data for this state</div><br>";
                 }
 
                 $result->free_result();
 
             } else {
-                echo "<div style='color: red;'>Execute failed.<div><br>";
+                echo "<div style='color: red;'>Execute failed.</div><br>";
             }
 
             $stmt->close();
