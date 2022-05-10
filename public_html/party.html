@@ -1,13 +1,15 @@
 <html>
   <body>
     <h1>Data Filtered by Partisanship Data</h1>
-    <h2>See Data Given State Partisanship</h2>
+    <h2>See Data Given Partisanship During Given Year</h2>
     <form action="party.php" method="post">
-      <label for="party">Party:</label>
+      <label for="party">party:</label>
       <select id="party" name="party">
         <option value="democratic">Democratic</option>
         <option value="republican">Republican</option>
       </select>
+      <br />
+      year: <input type="text" name="year" /> <br />
       <input type="submit" />
     </form>
 
