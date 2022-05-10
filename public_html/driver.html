@@ -1,27 +1,18 @@
 <html>
   <body>
     <h1>Stop Data Filtered by Driver Data</h1>
-    <h2>See Stop Data Given Driver Age Group</h2>
-    <form action="driverAge.php" method="post">
-      <label for="age">Age Group:</label>
-      <select id="age" name="age">
-        <option value="19">19 and Under</option>
-        <option value="24">20-24</option>
-        <option value="29">25-29</option>
-        <option value="34">30-34</option>
-        <option value="39">35-39</option>
-        <option value="44">40-44</option>
-        <option value="49">45-49</option>
-        <option value="54">50-54</option>
-        <option value="59">55-59</option>
-        <option value="64">60-64</option>
-        <option value="65">65 and Over</option>
+    <h2>See Stop Data Given Driver Sex</h2>
+    <form action="driverSex.php" method="post">
+      <label for="sex">Sex:</label>
+      <select id="sex" name="sex">
+        <option value="female">female</option>
+        <option value="male">male</option>
       </select>
       <input type="submit" />
     </form>
 
-    <h2>Stop Data Compared by Driver Age Groups</h2>
-    <form action="compareAge.php" method="post">
+    <h2>Stop Data Compared by Driver Sex</h2>
+    <form action="compareSex.php" method="post">
       <input type="submit" value="go" />
     </form>
 
