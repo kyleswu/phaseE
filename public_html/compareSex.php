@@ -14,7 +14,7 @@
                                 GROUP BY sex) AS compareCounts
                                 JOIN 
                                 (SELECT COUNT(driverID) AS numTotal
-                                FROM Driver) AS totalCount")) {
+                                FROM Driver) AS totalCount;")) {
         
         $compareTotalData = array();
 
@@ -51,7 +51,7 @@
                                 JOIN 
                                 (SELECT COUNT(driverID) AS numTotal
                                 FROM Driver AS D JOIN Stop AS S ON D.driverID = S.stopID
-                                WHERE S.searchConducted = 'true') AS totalCount")) {
+                                WHERE S.searchConducted = 'true') AS totalCount;")) {
         
         $compareSearchConducted = array();
 
