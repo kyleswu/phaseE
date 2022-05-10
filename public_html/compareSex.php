@@ -83,114 +83,6 @@
                                 FROM 
                                 (SELECT D.sex, COUNT(driverID) AS numSex
                                 FROM Driver AS D JOIN Stop AS S ON D.driverID = S.stopID
-                                WHERE !ISNULL(D.sex) AND S.contrabandFound ='true'
-                                GROUP BY sex) AS compareCounts
-                                JOIN 
-                                (SELECT COUNT(driverID) AS numTotal
-                                FROM Driver AS D JOIN Stop AS S ON D.driverID = S.stopID
-                                WHERE S.contrabandFound = 'true') AS totalCount")) {
-
-        $compareContrabandFound = array();
-
-        if ($stmt->execute()) {
-
-            $result = $stmt->get_result();
-
-            if (($result) && ($result->num_rows != 0)) {
-                foreach($result as $row) {
-                    array_push($compareContrabandFound, array( "label"=> $row["sex"], "y"=> $row["percentages"]));
-                }
-            }
-
-            $result->free_result();
-        } else {
-            echo "<div style='color: red;'>Execute failed.</div><br>";
-        }
-
-        $stmt->close();
-
-    } else {
-        echo "<div style ='color: red;'>Prepare failed.<br></div><br>";
-        $error = $conn->errno . ' ' . $conn->error;
-        echo $error; 
-    }
-
-    if ($stmt = $conn->prepare("SELECT compareCounts.sex, FORMAT(compareCounts.numSex/totalCount.numTotal*100, 2) AS percentages
-                                FROM 
-                                (SELECT D.sex, COUNT(driverID) AS numSex
-                                FROM Driver AS D JOIN Stop AS S ON D.driverID = S.stopID
-                                WHERE !ISNULL(D.sex) AND S.citationIssued ='true'
-                                GROUP BY sex) AS compareCounts
-                                JOIN 
-                                (SELECT COUNT(driverID) AS numTotal
-                                FROM Driver AS D JOIN Stop AS S ON D.driverID = S.stopID
-                                WHERE S.citationIssued = 'true') AS totalCount")) {
-
-        $compareCitationsIssued = array();
-
-        if ($stmt->execute()) {
-
-            $result = $stmt->get_result();
-
-            if (($result) && ($result->num_rows != 0)) {
-                foreach($result as $row) {
-                    array_push($compareCitationsIssued, array( "label"=> $row["sex"], "y"=> $row["percentages"]));
-                }
-            }
-
-            $result->free_result();
-        } else {
-            echo "<div style='color: red;'>Execute failed.</div><br>";
-        }
-
-        $stmt->close();
-
-    } else {
-        echo "<div style ='color: red;'>Prepare failed.<br></div><br>";
-        $error = $conn->errno . ' ' . $conn->error;
-        echo $error; 
-    }
-
-    /*if ($stmt = $conn->prepare("SELECT compareCounts.sex, FORMAT(compareCounts.numSex/totalCount.numTotal*100, 2) AS percentages
-                                FROM 
-                                (SELECT D.sex, COUNT(driverID) AS numSex
-                                FROM Driver AS D JOIN Stop AS S ON D.driverID = S.stopID
-                                WHERE !ISNULL(D.sex) AND S.warningIssued ='true'
-                                GROUP BY sex) AS compareCounts
-                                JOIN 
-                                (SELECT COUNT(driverID) AS numTotal
-                                FROM Driver AS D JOIN Stop AS S ON D.driverID = S.stopID
-                                WHERE S.warningIssued = 'true') AS totalCount")) {
-
-        $compareWarningsIssued = array();
-
-        if ($stmt->execute()) {
-
-            $result = $stmt->get_result();
-
-            if (($result) && ($result->num_rows != 0)) {
-                foreach($result as $row) {
-                    array_push($compareWarningsIssued, array( "label"=> $row["sex"], "y"=> $row["percentages"]));
-                }
-            }
-
-            $result->free_result();
-        } else {
-            echo "<div style='color: red;'>Execute failed.</div><br>";
-        }
-
-        $stmt->close();
-
-    } else {
-        echo "<div style ='color: red;'>Prepare failed.<br></div><br>";
-        $error = $conn->errno . ' ' . $conn->error;
-        echo $error; 
-    }
-
-    (if ($stmt = $conn->prepare("SELECT compareCounts.sex, FORMAT(compareCounts.numSex/totalCount.numTotal*100, 2) AS percentages
-                                FROM 
-                                (SELECT D.sex, COUNT(driverID) AS numSex
-                                FROM Driver AS D JOIN Stop AS S ON D.driverID = S.stopID
                                 WHERE !ISNULL(D.sex) AND S.warningIssued = 'false' AND 
                                 S.citationIssued = 'false' AND 
                                 (S.contrabandFound = 'false' OR S.contrabandFound IS NULL)
@@ -225,7 +117,7 @@
         echo "<div style ='color: red;'>Prepare failed.<br></div><br>";
         $error = $conn->errno . ' ' . $conn->error;
         echo $error; 
-    }*/
+    }
 
     $conn->close();
 ?>
@@ -269,51 +161,6 @@ var chart3 = new CanvasJS.Chart("chartContainer3", {
 	animationEnabled: true,
     theme: "light2",
 	title: {
-		text: "Percentage Composition of Total Contraband Found"
-	},
-	data: [{
-		type: "pie",
-		yValueFormatString: "#,##0.00\"%\"",
-		indexLabel: "{label} ({y})",
-		dataPoints: <?php echo json_encode($compareContrabandFound, JSON_NUMERIC_CHECK); ?>
-	}]
-});
-chart3.render();
-
-var chart4 = new CanvasJS.Chart("chartContainer4", {
-	animationEnabled: true,
-    theme: "light2",
-	title: {
-		text: "Percentage Composition of Total Citations Issued"
-	},
-	data: [{
-		type: "pie",
-		yValueFormatString: "#,##0.00\"%\"",
-		indexLabel: "{label} ({y})",
-		dataPoints: <?php echo json_encode($compareCitationsIssued, JSON_NUMERIC_CHECK); ?>
-	}]
-});
-chart4.render();
-
-var chart5 = new CanvasJS.Chart("chartContainer5", {
-	animationEnabled: true,
-    theme: "light2",
-	title: {
-		text: "Percentage Composition of Total Warnings Issued"
-	},
-	data: [{
-		type: "pie",
-		yValueFormatString: "#,##0.00\"%\"",
-		indexLabel: "{label} ({y})",
-		dataPoints: <?php echo json_encode($compareWarningsIssued, JSON_NUMERIC_CHECK); ?>
-	}]
-});
-chart5.render();
-
-var chart6 = new CanvasJS.Chart("chartContainer6", {
-	animationEnabled: true,
-    theme: "light2",
-	title: {
 		text: "Percentage Composition of Total Unnecessary Stops"
 	},
 	data: [{
@@ -323,7 +170,7 @@ var chart6 = new CanvasJS.Chart("chartContainer6", {
 		dataPoints: <?php echo json_encode($compareUnnecessaryStops, JSON_NUMERIC_CHECK); ?>
 	}]
 });
-chart6.render();
+chart3.render();
  
 }
 </script>
@@ -332,9 +179,6 @@ chart6.render();
 <div id="chartContainer1" style="height: 370px; width: 100%;"></div>
 <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
 <div id="chartContainer3" style="height: 370px; width: 100%;"></div>
-<div id="chartContainer4" style="height: 370px; width: 100%;"></div>
-<div id="chartContainer5" style="height: 370px; width: 100%;"></div>
-<div id="chartContainer6" style="height: 370px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
 </html>     
