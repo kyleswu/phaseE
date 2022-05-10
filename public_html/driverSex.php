@@ -216,7 +216,8 @@
 
         if ($stmt = $conn->prepare("SELECT S.stopID, S.date, S.time, S.searchConducted, S.contrabandFound, S.citationIssued, S.warningIssued
                                     FROM Driver AS D JOIN Stop AS S ON D.driverID = S.stopID
-                                    WHERE D.sex = ?;")) {
+                                    WHERE D.sex = ?
+                                    LIMIT 100000;")) {
 
             $stmt->bind_param("s", $sex);
 
@@ -245,15 +246,15 @@
                 $result->free_result();
 
             } else {
-            echo "<div style='color: red;'>Execute failed.</div><br>";
+                echo "<div style='color: red;'>Execute failed.</div><br>";
             }
 
             $stmt->close();
 
         } else {
-        echo "<div style ='color: red;'>Prepare failed.<br></div><br>";
-        $error = $conn->errno . ' ' . $conn->error;
-        echo $error; 
+            echo "<div style ='color: red;'>Prepare failed.<br></div><br>";
+            $error = $conn->errno . ' ' . $conn->error;
+            echo $error; 
         }
 
     $conn->close();

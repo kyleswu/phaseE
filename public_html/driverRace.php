@@ -216,7 +216,8 @@
 
         if ($stmt = $conn->prepare("SELECT S.stopID, S.date, S.time, S.searchConducted, S.contrabandFound, S.citationIssued, S.warningIssued
                                     FROM Driver AS D JOIN Stop AS S ON D.driverID = S.stopID
-                                    WHERE D.race = ?;")) {
+                                    WHERE D.race = ?
+                                    LIMIT 100000;")) {
 
             $stmt->bind_param("s", $race);
 

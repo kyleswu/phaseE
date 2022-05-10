@@ -92,7 +92,7 @@
                                 FROM Driver AS D JOIN Stop AS S ON D.driverID = S.stopID
                                 WHERE S.warningIssued = 'false' AND 
                                 S.citationIssued = 'false' AND 
-                                (S.contrabandFound ='false' OR S.contrabandFound IS NULL)) AS totalCount")) {
+                                (S.contrabandFound ='false' OR S.contrabandFound IS NULL)) AS totalCount;")) {
 
         $compareUnnecessaryStops = array();
 
