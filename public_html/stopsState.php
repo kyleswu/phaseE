@@ -97,7 +97,7 @@
                 if (($result) && ($result->num_rows != 0)) {
                     if ($row = $result->fetch_row()) {
                         if ($row[0]) {
-                            echo "Number of searchs resulting in contraband found: ";
+                            echo "Number of searches resulting in contraband found: ";
                             echo $row[1];
                         }
                     }
@@ -191,6 +191,41 @@
 
         if ($stmt = $conn->prepare("SELECT state, COUNT(stopID)
                                    FROM Stop
+                                   WHERE citationsIssued = 'true' AND state = ?;")) {
+            
+            $stmt->bind_param("s", $state);
+
+            if ($stmt->execute()) {
+
+                $result = $stmt->get_result();
+
+                if (($result) && ($result->num_rows != 0)) {
+                    if ($row = $result->fetch_row()) {
+                        if ($row[0]) {
+                            echo "Total citations issued: ";
+                            echo $row[1];
+                        }
+                    }
+                }
+
+                $result->free_result();
+
+            } else {
+                echo "<div style='color: red;'>Execute failed.<div><br>";
+            }
+
+            $stmt->close();
+
+        } else {
+            echo "<div style ='color: red;'>Prepare failed.<br></div><br>";
+            $error = $conn->errno . ' ' . $conn->error;
+            echo $error; 
+        }
+
+        echo "<br>";
+
+        if ($stmt = $conn->prepare("SELECT state, COUNT(stopID)
+                                   FROM Stop
                                    WHERE warningIssued = 'false' AND 
                                    citationIssued = 'false' AND 
                                    (contrabandFound ='false' OR contrabandFound IS NULL) 
@@ -205,7 +240,7 @@
                 if (($result) && ($result->num_rows != 0)) {
                     if ($row = $result->fetch_row()) {
                         if ($row[0]) {
-                            echo "Total unnecesary stops: ";
+                            echo "Total unnecessary stops: ";
                             echo $row[1];
                         }
                     }
