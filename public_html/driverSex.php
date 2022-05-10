@@ -11,8 +11,8 @@
     echo "s</h2>";
 
     if ($stmt = $conn->prepare("SELECT COUNT(driverID)
-                                   FROM Driver
-                                   WHERE sex = ?;")) {
+                                FROM Driver
+                                WHERE sex = ?;")) {
             
             $stmt->bind_param("s", $sex);
 
