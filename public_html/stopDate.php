@@ -4,31 +4,36 @@
 
     include 'open.php';
 
-    $item0 = $_POST['time'];
-    $item = $_POST['time'];
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
 
-    echo "<h2>Stop Data for ";
-    echo $sex;
-    echo "s</h2>";
+    if (!empty($startDate) && !empty($endDate)) {
+        echo "<h2>Stop data for the date range: ";
+        echo $startDate;
+        echo " to ";
+        echo $endDate;
+        echo "</h2><br>";
 
-    if ($stmt = $conn->prepare("SELECT COUNT(driverID)
-                                   FROM Driver
-                                   WHERE sex = ?;")) {
+        if ($stmt = $conn->prepare("SELECT COUNT(stopID) AS numStops
+                                    FROM Stop
+                                    WHERE date >= CAST(? AS DATE) AND date <= CAST(? AS DATE);")) {
             
-            $stmt->bind_param("s", $sex);
+            $stmt->bind_param("ss", $startDate, $endDate);
 
-            if ($stmt->execute()) {
-
+            if($stmt->execute()) {
+                
                 $result = $stmt->get_result();
 
-                if (($result) && ($result->num_rows != 0)) {
-                    
+                if(($result) && ($result->num_rows != 0)) {
                     if ($row = $result->fetch_row()) {
-                        echo "Total stops: ";
-                        echo $row[0];  
-                    } else {
-                        echo "<div style='color:red;'>No stops data for this sex</div><br>";
-                    }
+                        if (($row[0])) {
+                            echo "Total Stops: ";
+                            echo $row[0];
+                            echo "<br>";
+                        } else {
+                            echo "<div style='color: red;'>No data found for this range (please make sure the start date occurs before the end date)<div><br>";
+                        }
+                    } 
                 }
 
                 $result->free_result();
@@ -45,24 +50,26 @@
             echo $error; 
         }
 
-        echo "<br>";
-
-        if ($stmt = $conn->prepare("SELECT COUNT(D.driverID)
-                                   FROM Driver AS D JOIN Stop AS S ON D.driverID = S.stopID
-                                   WHERE S.searchConducted = 'true' AND D.sex = ?;")) {
+        if ($stmt = $conn->prepare("SELECT COUNT(stopID) AS numStops
+                                    FROM Stop
+                                    WHERE searchConducted = 'true' AND 
+                                    date >= CAST(? AS DATE) AND date <= CAST(? AS DATE);")) {
             
-            $stmt->bind_param("s", $sex);
+            $stmt->bind_param("ss", $startDate, $endDate);
 
-            if ($stmt->execute()) {
-
+            if($stmt->execute()) {
+                
                 $result = $stmt->get_result();
 
-                if (($result) && ($result->num_rows != 0)) {
+                if(($result) && ($result->num_rows != 0)) {
                     if ($row = $result->fetch_row()) {
-                        echo "Total searches conducted: ";
-                        echo $row[0];
+                        if (($row[0])) {
+                            echo "Total Searches Conducted: ";
+                            echo $row[0];
+                            echo "<br>";
+                        }
                     }
-                }
+                } 
 
                 $result->free_result();
 
@@ -78,24 +85,26 @@
             echo $error; 
         }
 
-        echo "<br>";
-
-        if ($stmt = $conn->prepare("SELECT COUNT(D.driverID)
-                                   FROM Driver AS D JOIN Stop AS S ON D.driverID = S.stopID
-                                   WHERE S.contrabandFound = 'true' AND D.sex = ?;")) {
+        if ($stmt = $conn->prepare("SELECT COUNT(stopID) AS numStops
+                                    FROM Stop
+                                    WHERE contrabandFound = 'true' AND 
+                                    date >= CAST(? AS DATE) AND date <= CAST(? AS DATE);")) {
             
-            $stmt->bind_param("s", $sex);
+            $stmt->bind_param("ss", $startDate, $endDate);
 
-            if ($stmt->execute()) {
-
+            if($stmt->execute()) {
+                
                 $result = $stmt->get_result();
 
-                if (($result) && ($result->num_rows != 0)) {
+                if(($result) && ($result->num_rows != 0)) {
                     if ($row = $result->fetch_row()) {
-                        echo "Number of searches resulting in contraband found: ";
-                        echo $row[0];
+                        if (($row[0])) {
+                            echo "Total Contraband Found: ";
+                            echo $row[0];
+                            echo "<br>";
+                        }
                     }
-                }
+                } 
 
                 $result->free_result();
 
@@ -111,24 +120,26 @@
             echo $error; 
         }
 
-        echo "<br>";
-
-        if ($stmt = $conn->prepare("SELECT COUNT(D.driverID)
-                                   FROM Driver AS D JOIN Stop AS S ON D.driverID = S.stopID
-                                   WHERE S.citationIssued = 'true' AND D.sex = ?;")) {
+        if ($stmt = $conn->prepare("SELECT COUNT(stopID) AS numStops
+                                    FROM Stop
+                                    WHERE citationIssued = 'true' AND 
+                                    date >= CAST(? AS DATE) AND date <= CAST(? AS DATE);")) {
             
-            $stmt->bind_param("s", $sex);
+            $stmt->bind_param("ss", $startDate, $endDate);
 
-            if ($stmt->execute()) {
-
+            if($stmt->execute()) {
+                
                 $result = $stmt->get_result();
 
-                if (($result) && ($result->num_rows != 0)) {
+                if(($result) && ($result->num_rows != 0)) {
                     if ($row = $result->fetch_row()) {
-                        echo "Total citations issued: ";
-                        echo $row[0];
+                        if (($row[0])) {
+                            echo "Total Citations Issued: ";
+                            echo $row[0];
+                            echo "<br>";
+                        }
                     }
-                }
+                } 
 
                 $result->free_result();
 
@@ -144,24 +155,26 @@
             echo $error; 
         }
 
-        echo "<br>";
-
-        if ($stmt = $conn->prepare("SELECT COUNT(D.driverID)
-                                   FROM Driver AS D JOIN Stop AS S ON D.driverID = S.stopID
-                                   WHERE S.warningIssued = 'true' AND D.sex = ?;")) {
+        if ($stmt = $conn->prepare("SELECT COUNT(stopID) AS numStops
+                                    FROM Stop
+                                    WHERE warningIssued = 'true' AND 
+                                    date >= CAST(? AS DATE) AND date <= CAST(? AS DATE);")) {
             
-            $stmt->bind_param("s", $sex);
+            $stmt->bind_param("ss", $startDate, $endDate);
 
-            if ($stmt->execute()) {
-
+            if($stmt->execute()) {
+                
                 $result = $stmt->get_result();
 
-                if (($result) && ($result->num_rows != 0)) {
+                if(($result) && ($result->num_rows != 0)) {
                     if ($row = $result->fetch_row()) {
-                        echo "Total warnings issued: ";
-                        echo $row[0];
+                        if (($row[0])) {
+                            echo "Total Warnings Issued: ";
+                            echo $row[0];
+                            echo "<br>";
+                        }
                     }
-                }
+                } 
 
                 $result->free_result();
 
@@ -177,27 +190,28 @@
             echo $error; 
         }
 
-        echo "<br>";
-
-        if ($stmt = $conn->prepare("SELECT COUNT(D.driverID)
-                                   FROM Driver AS D JOIN Stop AS S ON D.driverID = S.stopID
-                                   WHERE S.warningIssued = 'false' AND 
-                                   S.citationIssued = 'false' AND 
-                                   (S.contrabandFound ='false' OR S.contrabandFound IS NULL) 
-                                   AND D.sex = ?;")) {
+        if ($stmt = $conn->prepare("SELECT COUNT(stopID) AS numStops
+                                    FROM Stop
+                                    WHERE warningIssued = 'false' AND 
+                                    citationIssued = 'false' AND 
+                                   (contrabandFound ='false' OR contrabandFound IS NULL) AND 
+                                    date >= CAST(? AS DATE) AND date <= CAST(? AS DATE);")) {
             
-            $stmt->bind_param("s", $sex);
+            $stmt->bind_param("ss", $startDate, $endDate);
 
-            if ($stmt->execute()) {
-
+            if($stmt->execute()) {
+                
                 $result = $stmt->get_result();
 
-                if (($result) && ($result->num_rows != 0)) {
+                if(($result) && ($result->num_rows != 0)) {
                     if ($row = $result->fetch_row()) {
-                        echo "Total unnecessary stops: ";
-                        echo $row[0];
+                        if (($row[0])) {
+                            echo "Total Unnecessary Stops: ";
+                            echo $row[0];
+                            echo "<br>";
+                        }
                     }
-                }
+                } 
 
                 $result->free_result();
 
@@ -213,50 +227,10 @@
             echo $error; 
         }
 
-        echo "<br>";
 
-        if ($stmt = $conn->prepare("SELECT S.stopID, S.date, S.time, S.searchConducted, S.contrabandFound, S.citationIssued, S.warningIssued
-                                    FROM Driver AS D JOIN Stop AS S ON D.driverID = S.stopID
-                                    WHERE D.sex = ?;")) {
-
-            $stmt->bind_param("s", $sex);
-
-            if ($stmt->execute()) {
-
-                $result = $stmt->get_result();
-
-                if (($result) && ($result->num_rows != 0)) {
-
-                    echo "<table border=\"1px solid black\">";
-                    echo "<tr><th> Stop ID </th> <th> Date </th><th> Time </th><th> Search Conducted </th><th> Contraband Found </th><th> Citation Issued </th><th> Warning Issued </th></tr>";
-
-                    while ($row = $result->fetch_row()) {
-                        echo "<tr>";
-                        echo "<td>".$row[0]."</td>";
-                        echo "<td>".$row[1]."</td>";
-                        echo "<td>".$row[2]."</td>";
-                        echo "<td>".$row[3]."</td>";
-                        echo "<td>".$row[4]."</td>";
-                        echo "<td>".$row[5]."</td>";
-                        echo "<td>".$row[6]."</td>";
-                        echo "</tr>";
-                    }
-                }
-
-                $result->free_result();
-
-            } else {
-            echo "<div style='color: red;'>Execute failed.</div><br>";
-            }
-
-            $stmt->close();
-
-        } else {
-        echo "<div style ='color: red;'>Prepare failed.<br></div><br>";
-        $error = $conn->errno . ' ' . $conn->error;
-        echo $error; 
-        }
+    } else {
+        echo "<div style='color: red;'>Please enter a start and end date for the range.</div><br>";
+    }
 
     $conn->close();
-
 ?>
