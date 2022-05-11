@@ -2,10 +2,23 @@
   <body>
     <h1>Insert/Update a tuple into Driver</h1>
     <h2>Enter DriverID, race, and sex.</h2>
+    <h4>Note, this will insert an empty tuple into Stop with the same stopID.</h4>
     <form action="insertTuplesDriverStop.php" method="post">
-      driverID: <input type="int" name="id" /> <br />
-      race: <input type="text" name="race" /> <br />
-      sex: <input type="text" name="sex" /> <br />
+      driverID: <input type="int" name="id" /> <br /><br />
+      <label for="race">Race:</label>
+      <select id="race" name="race">
+        <option value="white">white</option>
+        <option value="hispanic">hispanic</option>
+        <option value="black">black</option>
+        <option value="asian/pacific islander">asian_or_pacific_islander</option>
+        <option value="unknown">unknown</option>
+        <option value="other">other</option><br />
+      </select>
+      <br /><br /><label for="sex">Sex:</label>
+      <select id="sex" name="sex">
+        <option value="female">female</option>
+        <option value="male">male</option><br />
+      </select><br /><br />
       <input type="submit" />
     </form>
   </body>

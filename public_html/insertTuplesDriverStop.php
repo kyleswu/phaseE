@@ -12,17 +12,17 @@
         include 'open.php';
 
 
-    // collect the posted value in a variable called $studentID
+    // collect the posted value in a variables
 
-    $item = $_POST['id'];
-    $item2 = $_POST['race'];
-    $item3 = $_POST['sex'];
+    $id = $_POST['id'];
+    $race = $_POST['race'];
+    $sex = $_POST['sex'];
 
 
-    // proceed with query only if supplied SID is non-empty
+    // proceed with query only if id is whole number and nonempty
 
-        if (!empty($item) and is_numeric($item)) {
-        //echo $item;
+    if (!empty($id) and is_numeric($id)) {
+        //echo $id;
 
 
         // proceed with query only if supplied SID is valid
@@ -31,35 +31,33 @@
 
                   from Driver
 
-                  where Driver.driverID ="'.$item.'"';
+                  where Driver.driverID ="'.$id.'"';
 
 
         $check_result = $conn->query($check);
 
         if ($check_result -> num_rows < 1) {
-            if ($result = $conn->query("CALL InsertTuplesDriverStop('".$item."','".$item2."', '".$item3."');")) {
-               echo "Inserted driverID: ".$item." !";
+            if ($result = $conn->query("CALL InsertTuplesDriverStop('".$id."','".$race."', '".$sex."');")) {
+               echo "Inserted driverID: ".$id." !";
             }
 
 
         } else {
 
             // call the stored procedure we already defined on dbase
-            if ($result = $conn->query("CALL InsertTuplesDriverStop('".$item."','".$item2."', '".$item3."');")) {
+            if ($result = $conn->query("CALL InsertTuplesDriverStop('".$id."','".$race."', '".$sex."');")) {
 
 
-            echo "Updated driverID ".$item." !";
+            echo "Updated driverID ".$id." !";
 
 
             } else {
-               if (!is_numeric($item)) {
-                  echo "DriverID needs to be a whole number<br>";
-               } else {
                   echo "Call to insertTuplesDriverStop failed<br>";
-               }
             }
         }
-    }
+    } else if (!is_numeric($id)) {
+        echo "DriverID needs to be a whole number<br>";
+  } 
 
 
     //close the connection opened by open.php since we no longer need access to dbase

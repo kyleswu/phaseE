@@ -13,21 +13,27 @@
 
 
     // collect the posted value in a variable called $studentID
-    $item0 = $_POST['state'];
-    $item = $_POST['id'];
-    $item2 = $_POST['date'];
-    $item3 = $_POST['time'];
-    $item4 = $_POST['year'];
-    $item5 = $_POST['searchConducted'];
-    $item6 = $_POST['contrabandFound'];
-    $item7 = $_POST['citationIssued'];
-    $item8 = $_POST['warningIssued'];
+    $state = $_POST['st'];
+    $id = $_POST['id'];
+    $date = $_POST['d'];
+    $time = $_POST['t'];
+    $year = (int) date("Y", strtotime($date));
+    $searchConducted = $_POST['sc'];
+    $contrabandFound = $_POST['cf'];
+    $citationIssued = $_POST['ci'];
+    $warningIssued = $_POST['wi'];
+
+    $entered_date = new DateTime($date);
+    $today = new DateTime('now');
+    if ($entered_date > $today) {
+        echo "Error: Date: ".$date." cannot be in the future!";
+    }
 
 
     // proceed with query only if supplied SID is non-empty
 
-        if (!empty($item) and is_numeric($item)) {
-        //echo $item;
+        else if (!empty($id) and is_numeric($id)) {
+        //echo $id;
 
 
         // proceed with query only if supplied SID is valid
@@ -36,35 +42,32 @@
 
                   from Stop
 
-                  where Stop.stopID ="'.$item.'"';
+                  where Stop.stopID ="'.$id.'"';
 
 
         $check_result = $conn->query($check);
 
         if ($check_result -> num_rows < 1) {
-            if ($result = $conn->query("CALL InsertTuplesrStop('".$item0."','".$item."','".$item2."', '".$item3."','".$item4."','".$item5."', '".$item6."','".$item7."', '".$item8."');")) {
-               echo "Inserted stopID: ".$item." !";
+            if ($result = $conn->query("CALL InsertTuplesStop('".$state."','".$id."','".$date."', '".$time."','".$year."','".$searchConducted."', '".$contrabandFound."','".$citationIssued."', '".$warningIssued."');")) {
+               echo "Inserted stopID: ".$id." !";
             }
 
 
         } else {
 
             // call the stored procedure we already defined on dbase
-            echo "test";
-            if ($result = $conn->query("CALL InsertTuplesrStop('".$item0."','".$item."','".$item2."', '".$item3."','".$item4."','".$item5."', '".$item6."','".$item7."', '".$item8."');")) {
+            if ($result = $conn->query("CALL InsertTuplesStop('".$state."','".$id."','".$date."', '".$time."','".$year."','".$searchConducted."', '".$contrabandFound."','".$citationIssued."', '".$warningIssued."');")) {
 
-            echo "Updated stopID ".$item." !";
+            echo "Updated stopID ".$id." !";
 
 
             } else {
-               if (!is_numeric($item)) {
-                  echo "stopID needs to be a whole number<br>";
-               } else {
-                  echo "Call to insertTuplesStop failed<br>";
-               }
+                echo "Call to insertTuplesStop failed<br>";
             }
         }
-    }
+    } else if (!is_numeric($id)) {
+        echo "stopID needs to be a whole number<br>";
+     } 
 
 
     //close the connection opened by open.php since we no longer need access to dbase
