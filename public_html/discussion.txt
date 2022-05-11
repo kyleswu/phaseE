@@ -1,0 +1,85 @@
+Mihir Chakravarthi and Kyle Wu
+machakra9 and kwu45
+
+MODIFICATIONS:
+We did end up straying a little bit away from our original 15 queries since we wanted
+to focus more on querying for specific states, year, or party affiliations. Because of this,
+we didn't cover the following queries, but have added more to replace it. In addition, some of them
+have been somewhat altered to fit the user input and direction that we wanted to take the project.
+We adjusted them in a way where we feel that the presentation can offer some interesting insights
+into the data since we originally didn't really think too much about the queries that we were writing.
+
+uncovered:
+Mean highway fatality rate for each state
+Which state and year was there the largest ratio of highwayFatalities to licensedDrivers and what was their partisanship that year
+
+PROCESS:
+Partisanship:
+
+data: https://www.fec.gov/introduction-campaign-finance/election-and-voting-information/
+The data can be downloaded as an excel sheet for the years 2004-2018 by clicking on the year and
+downloading the entire publication in excel format.
+
+From these excel sheets, we used table 2. General Election Votes Cast by Party
+This sheet shows the votes by party within each state, and we used a simple equation to find
+the party with the majority of votes within the state. [=IF(B > C, "democratic", "republican)]
+We also had to remove the rows for the US territories and DC to just have the 50 states in our data.
+Once this had been done for each of the excel sheets from 2004-2018, we copied the data from
+each sheet into a single aggregate sheet of the following columns:
+state, year, partisanship
+We then converted the excel sheet to a csv and then saved the csv as a partisanship.txt
+
+TrafficStatistics:
+
+data: https://www.bts.gov/browse-statistical-products-and-data/state-transportation-statistics/state-highway-travel
+For the data, we selected (from the dropdown menus):
+year range to be from 1999-2020
+states to be all 50 states unselecting US territories and DC
+measures: (highway fatalities, licensed drivers)
+We then clicked the download button and chose to download as data (.csv)
+
+Taking this csv file, we used python to convert the data which was in the format
+State,Measures,Year,Values
+to be of the format
+State, Year, Highway Fatalities, Licensed Drivers
+
+In python we used pandas to convert the data to a dataframe and then used the dataframe to create a mapping
+of pair (State, Year) -> [Highway Fatalities, Licensed Drivers]. We then used this mapping to write to the
+output txt file making each line a stringified map entry which was comma separated. This output file is our
+trafficstatistics.txt
+
+Driver and Stop:
+
+data: https://openpolicing.stanford.edu/data/
+For this source, we realized that a lot of the data that we needed for our queries was missing for certain states.
+So, we found 10 states which contained files with the data that we wanted, namely: AZ, CA, CT, IL, LA, MA, MT, RI,
+TN, WI. 
+
+Once we downloaded all the files, we had to split each file into our driver and stop relations. To do this,
+we wrote a Python script to split each of our files as well as fill in any NULL/empty values with '\N'. We also 
+used the Python script to assign driverID and stopID ourselves (we noticed they did not exist in the original
+data files) and ensured that they corresponded to each other. In other words, the driverID is exactly equal to the
+stopID (this was done to facilitate our splitting). We then randomly selected 100,000 stops and their corresponding driver from each state
+and merged all of these random selections into one complete driver table and one complete stop table to each be used for our database.
+
+SUCCESSES:
+1: The data that we had was pretty difficult to work with, and we spent a good amount of time writing
+    python scripts and manipulating the data to get the text and csv files to work. It was especially
+    difficult since the scale of the data was so large.
+
+2: We were also very happy with the visualizations that we chose and thought that they provided really interesting
+    insights. It was really interesting to see the comparisons and how they turned out as well as the yearly changes
+    for each state.
+
+KNOWN ISSUES:
+One thing that we wish we could have changed is the webpage vizualization when there is no data. The charts will
+still render empty and be there when there isn't data to display. We unfortunately don't have a lot of experience
+with html and javascript, so we were unable to figure out how to fix that.
+
+EXTENSIONS:
+We wanted to add the permission base database access by adding another relation which stored usernames and passwords,
+but we didn't have the time to get to that. It probably would have been the next thing we'd want to implement.
+
+The other thing we would have wanted to add is better styling with css, given more time we would like to make the
+webpage look a lot more uniform and clean.
+
