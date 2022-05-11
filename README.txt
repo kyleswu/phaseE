@@ -1,4 +1,4 @@
-Mihir Chakravathi and Kyle Wu
+Mihir Chakravarthi and Kyle Wu
 machakra9 and kwu45
 
 No changes were made based on previous comments from Phase C and Phase D.
