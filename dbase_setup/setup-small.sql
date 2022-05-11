@@ -5,7 +5,6 @@ DROP TABLE IF EXISTS Partisanship;
 DROP TABLE IF EXISTS TrafficStatistics;
 DROP TABLE IF EXISTS Driver;
 DROP TABLE IF EXISTS Stop;
-DROP TABLE IF EXISTS Passwords;
 
 -- Describe schema for relation Partisanship
 CREATE TABLE Partisanship (
