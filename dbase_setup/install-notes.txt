@@ -1,0 +1,6 @@
+Mihir Chakravarthi and Kyle Wu
+mchakra9 and kwu45
+
+No special instructions needed
+
+note: setup.sql takes about 2-5 mins to run.
