@@ -79,11 +79,103 @@ INTO TABLE Driver
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n';
 
--- Table of passwords to access insertion/deletion of tuples
-CREATE TABLE Passwords (
-    CurPasswords  VARCHAR(15)
-);
+DROP PROCEDURE IF EXISTS InsertTuplesDriverStop;
 
-INSERT INTO Passwords VALUES ('mchakra9');
-INSERT INTO Passwords VALUES ('kwu45');
-INSERT INTO Passwords VALUES ('bestprojectever');
+DELIMITER //
+
+
+CREATE PROCEDURE InsertTuplesDriverStop(IN id INT, r VARCHAR(20), s VARCHAR(20))
+BEGIN
+-- IF EXISTS(SELECT * FROM Passwords WHERE Passwords.CurPasswords = pass) THEN
+    IF EXISTS (SELECT * FROM Driver WHERE driverID = id) THEN
+        UPDATE Driver
+        SET race = r, sex = s
+        WHERE driverID = id;
+    ELSE
+        SET FOREIGN_KEY_CHECKS = 0;
+            INSERT INTO Driver(
+                driverID, race, sex)
+                VALUES(id, r, s);
+
+            INSERT INTO Stop (stopID)
+            SELECT Driver.driverID FROM Driver
+            LEFT JOIN Stop
+              ON Driver.driverID = Stop.stopID
+            WHERE Stop.stopID IS NULL;
+
+            SET FOREIGN_KEY_CHECKS = 1;
+
+            UPDATE Stop
+            SET state = NULL, date = NULL, time = NULL, searchconducted = NULL,
+                contrabandfound = NULL, citationissued = NULL, warningIssued = NULL, year = NULL
+            WHERE stopID = id AND state IS null AND date IS null AND time IS null AND searchconducted IS null AND contrabandfound IS NULL
+                AND citationissued IS NULL AND warningIssued IS NULL AND year IS NULL;
+
+
+-- IF EXISTS(SELECT * FROM HW4_Password WHERE HW4_Password.CurPasswords = pass) THEN
+-- SELECT S.sid, S.lname, S.fname, S.sec, A.aname, R.score
+-- FROM HW4_Student as S
+-- NATURAL JOIN HW4_RawScore as R
+-- NATURAL JOIN HW4_Assignment AS A
+-- ORDER BY S.Sec ASC, S.lname ASC, S.fname ASC;
+
+-- ELSE
+-- SELECT 'Error: Invalid password' AS pass;
+    END IF;
+-- ELSE
+-- SELECT 'Error: Invalid password' AS pass;
+-- END IF;
+END; //
+
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS InsertTuplesStop;
+
+DELIMITER //
+
+
+CREATE PROCEDURE InsertTuplesStop(IN st VARCHAR(20), id INT, d DATE, t TIME, y SMALLINT, sc VARCHAR(20), cf VARCHAR(20), ci VARCHAR(20), wi VARCHAR(20))
+BEGIN
+-- IF EXISTS(SELECT * FROM Passwords WHERE Passwords.CurPasswords = pass) THEN
+    IF EXISTS (SELECT * FROM Stop WHERE stopID = id) THEN
+        UPDATE Stop AS S
+        SET S.state = st, S.date = d, S.time = t, S.year = y, S.searchconducted = sc, S.contrabandfound = cf, S.citationissued = ci, S.warningIssued = wi
+        WHERE stopID = id;
+    ELSE
+        INSERT INTO Stop(
+            state, stopID, date, time, year, searchconducted, contrabandfound, citationissued, warningIssued)
+            VALUES(st, id, d, t, y, sc, cf, ci, wi);
+
+
+-- IF EXISTS(SELECT * FROM HW4_Password WHERE HW4_Password.CurPasswords = pass) THEN
+-- SELECT S.sid, S.lname, S.fname, S.sec, A.aname, R.score
+-- FROM HW4_Student as S
+-- NATURAL JOIN HW4_RawScore as R
+-- NATURAL JOIN HW4_Assignment AS A
+-- ORDER BY S.Sec ASC, S.lname ASC, S.fname ASC;
+
+-- ELSE
+-- SELECT 'Error: Invalid password' AS pass;
+    END IF;
+-- ELSE
+-- SELECT 'Error: Invalid password' AS pass;
+-- END IF;
+END; //
+
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS deleteTuples;
+
+DELIMITER //
+
+
+CREATE PROCEDURE deleteTuples(IN id INT)
+BEGIN
+-- IF EXISTS(SELECT * FROM Passwords WHERE Passwords.CurPasswords = pass) THEN
+    DELETE FROM Stop WHERE stopID = id;  
+-- ELSE
+-- SELECT 'Error: Invalid password' AS pass;
+-- END IF;
+END; //
+
+DELIMITER ;
