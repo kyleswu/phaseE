@@ -10,6 +10,10 @@
         echo "<h2>Partisanship Data for ";
         echo $year;
         echo "<br>";
+
+        if (($year % 2) !== 0) {
+            $year -= 1;
+        }
         
         if ($stmt = $conn->prepare("SELECT state, party
                                     FROM Partisanship

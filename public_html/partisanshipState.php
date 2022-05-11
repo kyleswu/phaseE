@@ -10,6 +10,7 @@
         echo "<h2>Partisanship Data for ";
         echo $state;
         echo "</h2><br>";
+        
         if ($stmt = $conn->prepare("SELECT year, party
                                     FROM Partisanship
                                     WHERE state = ?;")) {
