@@ -4,7 +4,7 @@
 
     include 'open.php';
 
-    echo "<h2>Comparing Data by Partisanship</h2>"
+    echo "<h2>Comparing Data by Partisanship</h2>";
 
     if ($stmt = $conn->prepare("SELECT compareCounts.party, FORMAT(compareCounts.numParty/totalCount.numTotal*100, 2) AS percentages
                                 FROM 
