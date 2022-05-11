@@ -10,3 +10,5 @@ After reducing the data, it now runs in about 2-5 minutes. We chose the data by 
 
 We have also moved the cleanup script into the beginnings of the setup scripts and all required procedures
 are setup in the setup script as well so there is no need to run any other sql files.
+
+Note that our driver and stop relations are in csv file format, rather than txt. We encoutered some issues when they were in txt file format, so chose to leave them as csv files. Please let us know if this poses any issues.
